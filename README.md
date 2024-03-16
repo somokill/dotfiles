@@ -1,5 +1,5 @@
 # dotfiles
- ==Welcome==, this is my dotfiles for **r/unixporn** users, *and not only*
+ *Welcome*, this is my dotfiles for **r/unixporn** users, *and not only*.
 
 ### Configuration of what is here
 
@@ -61,9 +61,11 @@
 
 ### How to install this dots
 
-Just *replace* the standard (or your own, **but save them first**) program configuration files with these files
+Just *replace* the standard (or your own, **but save them first**) program configuration files with these files.
 
 ### Screenshots
+
+**Some screenshots are blurred to prevent political controversy.**
 
 > ![2024-03-16_20-29](README.assets/2024-03-16_20-29-17106048406387.png)
 >
