@@ -1,8 +1,5 @@
-#--- КЛАВИША МОДИФИКАТОР -----------------------------------------
 set $mod Mod4
 
-
-#--- АВТОСТАРТ ---------------------------------------------------
 exec --no-startup-id xrandr --output LVDS1 --off &
 exec --no-startup-id picom --config ~/.config/picom/picom.conf &
 exec_always --no-startup-id ~/.config/polybar/launch.sh &
@@ -11,9 +8,6 @@ exec --no-startup-id wal -R &
 exec --no-startup-id setxkbmap -model pc105 -layout us,ru -option grp:caps_toggle &
 exec --no-startup-id dex --autostart --environment i3 &
 
-#--- ПРИВЯЗКА К ВОРКСПЕЙСАМ --------------------------------------
-
-#--- ПЛАВАЮЩИЕ ПРИЛОЖЕНИЯ ----------------------------------------
 for_window [class="TelegramDesktop"] floating enable
 for_window [class="St"] floating enable
 for_window [class="Alacritty"] floating enable
@@ -21,53 +15,35 @@ for_window [class="gnome-calculator"] floating enable
 for_window [class="Tomato"] floating enable
 for_window [class="Music"] floating enable
 
-#--- ФОКУС НА ПРИЛОЖЕНИЕ ПРИ ЗАПУСКЕ -----------------------------
-
-#--- ШРИФТЫ В ЗАГОЛОВКАХ ОКОН ------------------------------------
 font pango:monospace 8
 
-#--- ГАПСЫ -------------------------------------------------------
 gaps inner 4
 gaps outer 4
-smart_gaps off #Выключить когда одно окно
+smart_gaps off
 
-
-#--- ОТКЛЮЧЕНИЕ ЗАГОЛОВКА ОКНА -----------------------------------
 default_border pixel 0
 
-#--- РАЗМЕР РАМОК ОКНА -------------------------------------------
 for_window [tiling] border pixel 0
 for_window [floating] border pixel 0
 
-#--- ОТКЛЮЧЕНИЕ РАМОК ДЛЯ ПОЛНОЭКРАННЫХ ПРИЛОЖЕНИЙ ---------------
 smart_borders on
 
-# ЦВЕТ РАМОК
-#                       Рамка   Фон   Индикатор Родительская_рамка
 client.focused			#cad3f5 #cad3f5 #cad3f5 #cad3f5
 client.focused_inactive	#24273a #24273a #24273a #24273a
 client.unfocused		#24273a #24273a #24273a #24273a
 client.urgent			#E78284 #E78284 #E78284 #E78284
 client.placeholder		#24273a #24273a #24273a #24273a
 
-
-#--- КНОПКИ УПРАВЛЕНИЯ ЗВУКОМ _-----------------------------------
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-
-#--- КЛАВИША ДЛЯ УПРАВЛЕНИЯ ПЛАВАЮЩИМИ ОКНАМИ МЫШЬЮ --------------
 floating_modifier $mod
 
-
-#--- ПЕРЕТАСКИВАТЬ ПЛАВАЮЩЕЕ ОКНО ЗА ЗАГОЛОВОК -------------------
 tiling_drag modifier titlebar
 
-
-#--- ЗАПУСК ПРИЛОЖЕНИЙ -------------------------------------------
 bindsym $mod+Return exec alacritty --class Alacritty
 bindsym $mod+Shift+Return exec alacritty --class "Tomato" --option 'window.dimensions.columns=25' --option 'window.dimensions.lines=15' --command 'tomato'
 bindsym $mod+m exec alacritty --class "Music" --option 'window.dimensions.columns=50' --option 'window.dimensions.lines=15' --command 'cmus'
@@ -76,12 +52,8 @@ bindsym $mod+Shift+x exec --no-startup-id rofi -show power-menu -modi power-menu
 bindsym $mod+n exec --no-startup-id thunar
 bindsym $mod+Print exec --no-startup-id flameshot gui
 
-
-#--- УБИТЬ ОКНО --------------------------------------------------
 bindsym $mod+w kill
 
-
-#--- ПЕРЕКЛЮЧЕНИЕ ФОКУСА -----------------------------------------
 bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
@@ -92,8 +64,6 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-
-#--- ПЕРЕМЕЩЕНИЕ ОКНА --------------------------------------------
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
@@ -104,42 +74,24 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-
-#--- ГОРИЗОНТАЛЬНАЯ ОРИЕНТАЦИЯ ОКОН ------------------------------
 bindsym $mod+h split h
 
-
-#--- ВЕРТИКАЛЬНАЯ ОРИЕНТАЦИЯ ОКОН --------------------------------
 bindsym $mod+v split v
 
-
-#--- ФУЛСКРИН ----------------------------------------------------
 bindsym $mod+f fullscreen toggle
 
-
-#--- ПЕРЕКЛЮЧЕНИЕ МАКЕТОВ ----------------------------------------
 # bindsym $mod+s layout stacking
 # bindsym $mod+w layout tabbed
 # bindsym $mod+e layout toggle split
 
-
-#--- ПЕРЕХОД В ПЛАВАЮЩИЙ РЕЖИМ И ИЗ НЕГО -------------------------
 bindsym $mod+Shift+space floating toggle
 
-
-#--- ПЕРЕКЛЮЧЕНИЕ МЕЖДУ ФЛОАТ И ТАЙЛИНГ --------------------------
 # bindsym $mod+space focus mode_toggle
 
-
-#--- ВЫДЕЛИТЬ ВСЕ ОКНА -------------------------------------------
 bindsym $mod+a focus parent
 
-
-#--- ЯХЗ ЧТО ЭТО ТАКОЕ -------------------------------------------
 #bindsym $mod+d focus child
 
-
-#--- ИМЕНА ВОРКСПЕЙСОВ -------------------------------------------
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -151,8 +103,6 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-
-#--- ПЕРЕКЛЮЧЕНИЕ ВОРКСПЕЙСОВ ------------------------------------
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
@@ -164,8 +114,6 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
-
-#--- ПЕРЕМЕЩЕНИЯ ОКОН МЕЖДУ ВОКРСПЕЙСАМИ  ------------------------
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
@@ -177,46 +125,31 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-
-#--- ПЕРЕЗАГРУЗКА КОНФИГА ----------------------------------------
 bindsym $mod+Shift+c reload
 
-
-#--- РЕСТАРТ I3 --------------------------------------------------
 bindsym $mod+Shift+r restart
 
-
-#--- ВЫХОД ИЗ I3 -------------------------------------------------
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-
-#--- НАСТРОЙКИ РЕСАЙЗА -------------------------------------------
 mode "resize" {
-
-        # Изменение размеров в какую-то сторону на сколько-то пикселей
+        
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym semicolon resize grow width 10 px or 10 ppt
 
-        # Изменение размеров в какую-то сторону на сколько-то пикселей
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
-        # Выход из режима ресайза
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
 
-
-#--- ПЕРЕХОД В РЕЖИМ РЕСАЙЗА -------------------------------------
 bindsym $mod+r mode "resize"
 
-
-#--- ВКЛЮЧЕНИЕ I3bar ---------------------------------------------
 #bar {
 #        status_command i3status
 #}
